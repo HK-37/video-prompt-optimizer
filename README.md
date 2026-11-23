@@ -27,15 +27,27 @@ python scripts/run_regression.py
 
 `lint_prompt.py` 只检查有限规则，不等于审美评价或生成成功证明。视频生成、素材获取与成片验收由使用者的工具链负责。
 
-## 私有知识库如何接入
+## 体系化知识库如何接入
 
-本 Skill **不会自动下载或克隆任何私有知识库**。公开代码与知识数据是两个独立资产：
+本 Skill 与公开的 [影像创作专业知识库](https://github.com/HK-37/image-video-creation-knowledge) 深度结合。知识库采用 **CC BY 4.0**，代码与知识数据分仓库、分许可维护。
 
-1. 使用者在自己的环境中准备 Markdown 知识库，并配置其本地路径，或提供有权限的内部读取接口。
-2. Agent 宿主按任务先读取知识库索引，再读取相关条目；只在当前有访问权限时使用。
-3. 未配置或无权读取时，使用本仓库公开的 `SKILL.md` 与 `references/` 独立工作，并在需要专业知识依据时如实说明限制。
+**仅克隆 Skill 不会自动获得知识库。** 普通 Git 克隆只下载当前仓库；Agent 需要能读取知识库的 Markdown 文件，才能启用知识增强。推荐使用两个独立目录：
 
-本仓库的公开参考文件不是私有知识库的代替品；外部用户没有私有知识库时，不应宣称拥有相同的知识增强能力。配置约定与维护者接入步骤见 [docs/knowledge-source.md](docs/knowledge-source.md)。
+```text
+your-workspace/
+├── skills/video-prompt-optimizer/       # 本仓库
+└── knowledge/image-video-creation/      # 公开知识库，建议 v1.1.0 或更新明确版本
+```
+
+在知识库目录执行：
+
+```bash
+git clone --branch v1.1.0 --depth 1 https://github.com/HK-37/image-video-creation-knowledge.git .
+```
+
+Agent 宿主将 `knowledge/image-video-creation/` 登记为创作知识源，先读取 `kb/MOC-index.md`，再按任务加载相关条目。也可将公开知识库作为项目子模块或数据依赖，但那需要另行执行初始化／更新，不是默认自动下载。
+
+未配置知识库时仍可使用公开参考文件，但必须明确提示：**当前未启用体系化知识增强，不代表本 Skill 的完整知识驱动状态。** 具体协议、版本与许可要求见 [docs/knowledge-source.md](docs/knowledge-source.md)。
 
 ## 结构
 
