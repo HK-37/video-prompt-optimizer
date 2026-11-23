@@ -1,0 +1,48 @@
+{
+  "cases": {
+    "NEG_bad_example.txt": {
+      "score": 10.0,
+      "all_pass": false,
+      "fails": [
+        "NEG_NEGATION",
+        "EDIT_TERMS",
+        "SHOT_SIZE",
+        "CAMERA_MOVE",
+        "LIGHT",
+        "TONE"
+      ]
+    },
+    "NEG_multi_move.txt": {
+      "score": 80.0,
+      "all_pass": false,
+      "fails": [
+        "CAMERA_MOVE"
+      ]
+    },
+    "crime_confront.txt": {
+      "score": 100.0,
+      "all_pass": true,
+      "fails": []
+    },
+    "daily_empty.txt": {
+      "score": 100.0,
+      "all_pass": true,
+      "fails": []
+    },
+    "door_duel_mirror.txt": {
+      "score": 100.0,
+      "all_pass": true,
+      "fails": []
+    },
+    "mecha_cast.txt": {
+      "score": 100.0,
+      "all_pass": true,
+      "fails": []
+    },
+    "wuxia_xiake.txt": {
+      "score": 100.0,
+      "all_pass": true,
+      "fails": []
+    }
+  }
+}
